@@ -1,0 +1,35 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
+<head>
+    <title>Golden Retrievers Cleveland</title>
+    {% include 'layouts/partials/css_meta.html' %}
+</head> 
+
+<body data-spy="scroll"> 
+		<div id="home"></div>
+
+		<!-- header -->
+    {% include 'layouts/partials/header.html' %}
+    
+    <!-- sections -->
+   	
+    {% block music %}{% endblock %}
+    
+    {% block members %}{% endblock %}
+    
+    {% include 'layouts/partials/info.html' %}
+   	
+   	<!-- footer -->
+
+   	{% include 'layouts/partials/footer.html' %} 
+    	
+    {% include 'layouts/partials/modals.html' %}
+    
+    {% include 'layouts/partials/js.html' %}
+    
+</body>
+</html> 
+

@@ -1,0 +1,31 @@
+{% load staticfiles %}
+<section id="about" class="about-section section text-center">
+        <div class="container">
+            <h2 class="section-title">Members</h2>
+
+            <div class="section-intro center-block">
+                Golden Retrievers Cleveland (GRC) is the duo formed in  2013 consisting of Ethan Wilt and Mike Zakany.  <br>
+                Most of the tracks on Soundcloud are one take improvisations, and other instruments / effects would be overdubbed later. 
+            </div>
+            <div class="members-block">
+                <div class="row">
+                    {% for member in members %}
+                    <div class="item col-xs-12 col-md-4">
+                        <div class="item-inner">
+                            <div class="member-profile">
+                                <img class="img-responsive" src="{{ member.get_absolute_url }}" alt="">
+                            </div><!--//member-profile-->
+                            <div class="member-label">{{ member.instrument }}</div>
+                            <h3 class="member-name">
+                                {{ member.name }}
+                            </h3>
+                            <div class="member-desc">
+                                {{ member.description }}
+                            </div>
+                        </div><!--//item-inner-->
+                    </div><!--//item-->
+                    {% endfor %}
+                </div><!--//row-->
+            </div><!--//members-block-->
+        </div><!--//container-->
+    </section><!--//about-section-->

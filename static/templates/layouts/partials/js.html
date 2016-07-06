@@ -1,0 +1,39 @@
+{% load staticfiles %}
+{% csrf_token %}
+<!-- Main Javascript -->          
+    <script type="text/javascript" src="{% static 'assets/plugins/jquery-1.12.3.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/plugins/jquery-scrollTo/jquery.scrollTo.min.js' %}"></script>  
+    <script type="text/javascript" src="{% static 'assets/plugins/back-to-top.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/plugins/vegas/dist/vegas.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/main.js' %}"></script> 
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.2/js.cookie.min.js'></script>
+    <script src="{% static 'assets/js/alertify.min.js' %}"></script>
+
+    <!-- riot -->
+    <script src="https://connect.soundcloud.com/sdk/sdk-3.1.2.js"></script>
+    <script src='https://cdn.jsdelivr.net/riot/2.4/riot+compiler.min.js'></script>
+    
+    <script type='riot/tag' src="{% static 'riot-tags/playlist-viewer.tag' %}"></script>
+    <script type='riot/tag' src="{% static 'riot-tags/playlist-tracks.tag' %}"></script>
+    <script type='riot/tag' src="{% static 'riot-tags/soundplayer.tag' %}"></script>
+    <script type='riot/tag' src="{% static 'riot-tags/contact-form.tag' %}"></script>
+    
+    <script type="text/javascript">
+        var base = 'http://api.soundcloud.com/resolve'
+        var playlistsUrl = 'https://soundcloud.com/user-401164110/sets/'
+        var url = `${base}?url=${playlistsUrl}&client_id=3fcb51c94377d2c4f26ed603b21e9f91`
+        var token = Cookies.get('csrftoken')
+        var bus = riot.observable()
+
+        $.get(url).then((playlists) => {
+            riot.mount('playlist-viewer',{
+                playlists: playlists,
+                bus:bus
+            })
+
+            riot.mount('contact-form',{csrftoken: token})
+            
+        })
+
+    </script>
